@@ -8,7 +8,7 @@ function Typingmain() {
     "A teacher is called builder of the nation. The profession of teaching needs men and women with qualities of head and heart. There are many teachers in our school and a large number of teachers among them are highly qualified. I have great respect for all of them. Yet I have a special liking for Miss Y. Miss Y is a woman of great principles. She is jewel among all the teachers. Almost all the students respect her. She teaches us English. She is quite at home in this subject. She takes keen interest in teaching students. Simple living and high thinking is her motto. ",
     "Books are indeed never failing friends of man. For a mature mind, reading is the greatest source of pleasure and solace to distressed minds. The study of good books ennobles us and broadens our outlook. Therefore, the habit of reading should be cultivated. A student should never confine himself to his schoolbooks only. He should not miss the pleasure locked in the classics, poetry, drama, history, philosophy etc. We can derive benefit from other’s experiences with the help of books. The various sufferings, endurance and joy described in books enable us to have a closer look at human life. They also inspire us to face the hardships of life courageously. Nowadays there are innumerable books and time is scarce. ",
     "I am always scolded by my parents. But one day I was severely scolded by my English teacher. She infect teaches well. But that day, I could not resist the temptation that an adventure of Nancy Drew offered. While she was teaching, I was completely engrossed in reading that book. Nancy Drew was caught in the trap laid by some smugglers and it was then when I felt a light tap on my bent head. The teacher had caught me red handed. She scolded me then and there and insulted me in front of the whole class. I was embarrassed. My cheeks burned being guilty conscious. When the class was over, I went to the teacher to apologize. When she saw that I had realized my mistake.",
-    "A frieze above the A frieze above the",
+    "A group of children would play in the garden belonging to a giant each day after school. One day, the giant returns home from a seven year visit to his friend, a Cornish ogre. Furious at finding the children trespassing, he chases them out and proceeds to build a wall around his garden.",
   ];
   // let randomindex=Math.floor(Math.random()*(((data.length-1)+1)))
 
@@ -27,13 +27,23 @@ function Typingmain() {
   const [timer, settimer] = useState(1);
   const [starttest, setStarttest] = useState(true);
   const [mistake, setmistake] = useState(false);
+
+  const [wpm, setWpm] = useState( Math.round((wordcount / 5 )/ (timer / 60)));
   const [showresult, setShowresult] = useState(false);
   const navigate = useNavigate();
+  
+  const accuracy = ((wordcount) / (wordcount + wrongcount)) * 100;
+
+
 
   if (starttest == false && timer < 60) {
     setTimeout(() => {
+
       settimer(timer + 1);
+    setWpm(Math.round((wordcount / 5 )/ (timer / 60)))
+      
     }, 1000);
+
   }
 
   useEffect(() => {
@@ -47,9 +57,7 @@ function Typingmain() {
       setCustomtext("");
       setShowText(str.join(""));
       setCurrentposition(rv);
-      setWrongcount(0);
-      setWordcount(0);
-      settimer(1);
+     
       setStarttest(true);
       setmistake(false);
       setShowresult(false);
@@ -66,11 +74,13 @@ function Typingmain() {
       let arr = text;
       let removeChar = currentposition;
       let pos = arr.shift();
+      
       setCustomtext(customtext + removeChar);
       setText(arr);
       setShowText(text.join(""));
       setCurrentposition(pos);
       setmistake(false);
+      
     } else {
       setWrongcount(wrongcount + 1);
       setmistake(true);
@@ -88,9 +98,15 @@ function Typingmain() {
   // }, []);
   const handletype = () => {
     setStarttest(false);
+
   };
   const startagain = () => {
     setShowresult(false);
+
+     setWrongcount(0);
+      settimer(1);
+      setWordcount(0)
+    
   };
 
   return (
@@ -111,7 +127,7 @@ function Typingmain() {
           </svg>
           <span>WPM</span>
           <span className="sam">
-            {starttest ? "0" : Math.round(wordcount / 5 / (timer / 60))}
+            {starttest ? "0" : wpm}
           </span>
         </a>
         <a className="btn_top btn_top2">
@@ -148,9 +164,9 @@ function Typingmain() {
             />
           </svg>
           <span>Accuracy</span>
-          <span className="sam">{wrongcount}%</span>
+          <span className="sam">{wordcount==0?"0":accuracy.toFixed(2)}%</span>
         </a>
-        <a onClick={handletype} className="btn_top btn_top3">
+        {showresult?"":<a  onClick={handletype} className="btn_top btn_top3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -164,14 +180,15 @@ function Typingmain() {
             />
           </svg>
           <span>Start</span>
-        </a>
+        </a>}
       </div>
 
       {showresult ? (
         <div style={{ display: showresult }} className="show-result">
         <div className="result-div">
-        <strong>Word perminute:  {Math.round(wordcount / 5 / (timer / 60))}</strong>{" "}
-          <strong>Accuracy rate: 20%</strong>
+          <strong>Word Per Minute: {wpm}</strong>
+    
+          <strong>Accuracy: {wordcount==0?"0":accuracy.toFixed(2)}%</strong>
         </div>
           <button onClick={startagain}>Start Test Again</button>
         </div>
@@ -182,7 +199,7 @@ function Typingmain() {
           <div className="content-section">
             <div className="data">
               <div>
-                <h3>
+                <h3 className="para">
                   <span style={{ color: "green" }}>{customtext}</span>
                   <span
                     style={{
@@ -204,6 +221,7 @@ function Typingmain() {
               onChange={(e) => handleChange(e)}
               cols="70"
               rows="10"
+              placeholder="Type the above text here"
             ></textarea>
           </div>
         </div>

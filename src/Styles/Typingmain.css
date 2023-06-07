@@ -34,6 +34,11 @@
   .btn_top:hover path {
     fill: white;
   }
+  .para{
+font-size: 20px;
+font-weight: 500;
+font-weight: bold;
+  }
 
 
   .btn_top2 {
@@ -66,6 +71,9 @@
   .btn_top4:hover {
     background: #004c6c;
     color: white;
+  }
+  .main-section{
+    margin-bottom: 50px;
   }
   .sam{
 border-radius: 10px;
@@ -132,7 +140,7 @@ background-color: yellowgreen;
   }
   .show-result{
     width: 30%;
-    margin: auto;
+    margin: 50px  auto 50px auto;
     text-align: center;
     margin-top: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
