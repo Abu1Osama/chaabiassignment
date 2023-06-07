@@ -1,0 +1,70 @@
+.login-form {
+  width: 40%;
+  margin: auto;
+  padding: 20px 0;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+}
+#login{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+form {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.login-form h2 {
+  text-align: center;
+  color: teal;
+}
+
+.login-form-child {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form-child label {
+  margin-bottom: 5px;
+}
+
+.login-form-child input {
+  width: 400px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid rgb(215, 214, 214);
+}
+
+.login-form-child.login-submit-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form-child.login-submit-btn input {
+  background-image: linear-gradient(-45deg, blue, skyblue);
+  color: white;
+  font-weight: bold;
+  width: 400px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .login-form {
+    width: 80%;
+  }
+
+  .login-form-child input {
+    width: 100%;
+  }
+
+  .login-form-child.login-submit-btn input {
+    width: 100%;
+  }
+}
