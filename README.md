@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deployed link of the website: https://typing-world-abu1osama.vercel.app/
 
 ## Available Scripts
 
