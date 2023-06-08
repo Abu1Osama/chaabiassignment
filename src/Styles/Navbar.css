@@ -62,11 +62,23 @@
     font-weight: 600;
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
+    margin-top: 5px;
   }
   .logout:hover{
     color: tomato;
+  }
+
+  @media (max-width: 600px) {
+.bar{
+  gap: 10px;
+}
+.logo img{
+  height: 50px;
+  width: 60px;
+}
+
   }
 
  

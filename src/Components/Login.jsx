@@ -19,20 +19,31 @@ function Login() {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(loginRequest());
-
-    axios
-      .get("https://semi-mock2.onrender.com/users", {
-        params: {
-          email: email,
-          password: password,
+  
+    // Check if email and password are empty
+    if (email.trim() === "" || password.trim() === "") {
+      toast.error("Please enter email and password", {
+        style: {
+          borderRadius: "50px",
+          background: "#989898",
+          color: "red",
+          padding: "1rem 1.5rem",
+          fontWeight: "600",
         },
-      })
+      });
+      return;
+    }
+  
+    dispatch(loginRequest());
+  
+    axios
+      .get("https://semi-mock2.onrender.com/users")
       .then((response) => {
-        const userData = response.data[0];
+        const userData = response.data.find(
+          (user) => user.email === email && user.password === password
+        );
         if (userData) {
           dispatch(loginSuccess(userData.name));
           navigate(location.state?.from || "/");
@@ -40,14 +51,14 @@ function Login() {
             style: {
               borderRadius: "50px",
               background: "#989898",
-              color:"green",
+              color: "green",
               padding: "1rem 1.5rem",
               fontWeight: "600",
             },
           });
         } else {
           dispatch(loginFailure());
-          toast.error("Wrong credential 👻 !", {
+          toast.error("Wrong credentials 👻 !", {
             style: {
               borderRadius: "50px",
               background: "#989898",
@@ -62,6 +73,50 @@ function Login() {
         dispatch(loginFailure());
       });
   };
+  
+
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   dispatch(loginRequest());
+
+  //   axios
+  //     .get("https://semi-mock2.onrender.com/users", {
+  //       params: {
+  //         email: email,
+  //         password: password,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       const userData = response.data[0];
+  //       if (userData) {
+  //         dispatch(loginSuccess(userData.name));
+  //         navigate(location.state?.from || "/");
+  //         toast.success("Login successfully 😍 !", {
+  //           style: {
+  //             borderRadius: "50px",
+  //             background: "#989898",
+  //             color:"green",
+  //             padding: "1rem 1.5rem",
+  //             fontWeight: "600",
+  //           },
+  //         });
+  //       } else {
+  //         dispatch(loginFailure());
+  //         toast.error("Wrong credential 👻 !", {
+  //           style: {
+  //             borderRadius: "50px",
+  //             background: "#989898",
+  //             color: "red",
+  //             padding: "1rem 1.5rem",
+  //             fontWeight: "600",
+  //           },
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       dispatch(loginFailure());
+  //     });
+  // };
 
   return (
     <div id="login">
@@ -75,6 +130,8 @@ function Login() {
               id="email"
               name="email"
               value={email}
+              required={true}
+              placeholder="Enter your name"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -85,6 +142,8 @@ function Login() {
               id="password"
               name="password"
               value={password}
+              placeholder="Enter your password"
+              required={true}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

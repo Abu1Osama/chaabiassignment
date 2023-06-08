@@ -65,6 +65,16 @@
   }
 
   .footer-icon {
-    margin-top: 20px;
+    margin-top: 0px;
+  }
+  .footer-top ul li {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .footer-icon select {
+    font-size: 14px;
+  }
+  .footer-icon-bottom{
+    margin-top: 2px;
   }
 }

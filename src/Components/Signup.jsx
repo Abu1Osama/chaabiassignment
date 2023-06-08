@@ -14,28 +14,45 @@ function Signup() {
   const dispatch=useDispatch()
   const navigate=useNavigate()
   
-    const handlesubmit = (e) => {
-        e.preventDefault();
-      let initial = {
-        name,
-        email,
-        password,
-        confirmpassword
-      };
-  dispatch(signupUser(initial)).then(()=>{
-    toast.success("Registered successfully!Please login", {
-      style: {
-        borderRadius: "50px",
-        background: "#989898",
-        color: "#ffffff",
-        padding: "1rem 1.5rem",
-        fontWeight: "600",
-      },
-    });
-    navigate("/login")
-  })
-    
+  const handlesubmit = (e) => {
+    e.preventDefault();
+  
+    // Check if any field is empty
+    if (name.trim() === "" || email.trim() === "" || password.trim() === "" || confirmpassword.trim() === "") {
+      toast.error("Please fill in all fields", {
+        style: {
+          borderRadius: "50px",
+          background: "#989898",
+          color: "red",
+          padding: "1rem 1.5rem",
+          fontWeight: "600",
+        },
+      });
+      return;
+    }
+  
+    let initial = {
+      name,
+      email,
+      password,
+      confirmpassword
     };
+  
+    dispatch(signupUser(initial))
+      .then(() => {
+        toast.success("Registered successfully! Please login", {
+          style: {
+            borderRadius: "50px",
+            background: "#989898",
+            color: "#ffffff",
+            padding: "1rem 1.5rem",
+            fontWeight: "600",
+          },
+        });
+        navigate("/login");
+      });
+  };
+  
   return (
     <div id="signup">
       <div className="form">
@@ -44,20 +61,22 @@ function Signup() {
           <div className="form-child">
             <label htmlFor="">Name:-</label>
             <input  name="name"
+            placeholder="Enter your name"
             onChange={(e) => setName(e.target.value)} type="text" />
           </div>
           <div className="form-child">
             <label htmlFor="">Email:-</label>
             <input   name="email"
+             placeholder="Enter your email"
             onChange={(e) => setEmail(e.target.value)} type="text" />
           </div>
           <div className="form-child">
             <label htmlFor="">Password:-</label>
-            <input name="password"  onChange={(e) =>setPassword(e.target.value)} type="text" />
+            <input      placeholder="Enter your password" name="password"  onChange={(e) =>setPassword(e.target.value)} type="password" />
           </div>
           <div className="form-child">
             <label htmlFor="">Confirm Password:-</label>
-            <input name="confirmpassword" onChange={(e) =>setConfirmpassword(e.target.value)} type="text" />
+            <input   placeholder="Confirm your password" name="confirmpassword" onChange={(e) =>setConfirmpassword(e.target.value)} type="password" />
           </div>
           <div className="form-child submit-btn">
           <label htmlFor=""></label>

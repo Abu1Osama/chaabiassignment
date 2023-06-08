@@ -15,6 +15,7 @@ function Typingmain() {
   const [randomindex, setRandomindex] = useState(
     Math.floor(Math.random() * (data.length - 1 + 1))
   );
+  
   let str = data[randomindex].split("");
   let rv = str.shift();
   let str2 = str;
@@ -30,8 +31,12 @@ function Typingmain() {
 
   const [wpm, setWpm] = useState( Math.round((wordcount / 5 )/ (timer / 60)));
   const [showresult, setShowresult] = useState(false);
+
   const navigate = useNavigate();
-  
+
+
+
+
   const accuracy = ((wordcount) / (wordcount + wrongcount)) * 100;
 
 

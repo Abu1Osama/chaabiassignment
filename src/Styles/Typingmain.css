@@ -88,6 +88,8 @@ padding: 5px;
 color: white;
 letter-spacing: 2px;
 background-color: yellowgreen;
+box-shadow: 0 0 5px rgb(190, 238, 94); 
+outline: none;
 
 
   }
@@ -119,6 +121,7 @@ background-color: yellowgreen;
     margin: auto;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
   }
   .inp input{
     padding: 10px;
