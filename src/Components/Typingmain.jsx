@@ -84,6 +84,7 @@ function Typingmain() {
     } else {
       setWrongcount(wrongcount + 1);
       setmistake(true);
+       e.target.value = customtext;
     }
     console.log(char, char[char.length - 1]);
   };
@@ -222,6 +223,7 @@ function Typingmain() {
               cols="70"
               rows="10"
               placeholder="Type the above text here"
+              autoFocus
             ></textarea>
           </div>
         </div>

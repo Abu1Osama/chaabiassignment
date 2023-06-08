@@ -32,7 +32,7 @@ form {
   border: 1px solid rgb(215, 214, 214);
 }
 .submit-btn input {
-  background-image: linear-gradient(-45deg, blue, skyblue);
+  background-image: linear-gradient(-45deg,#6666ff,skyblue);
   color: white;
   font-weight: bold;
 }

@@ -17,7 +17,7 @@ h3{
 }
 
 .enroll{
-    background-image: linear-gradient(-45deg, blue, skyblue);
+    background-image: linear-gradient(-45deg,#6666ff,skyblue);
     color: white;
     font-weight: bold;
     width: 400px;
