@@ -1,6 +1,6 @@
 Deployed link of the website: https://typing-world-abu1osama.vercel.app/
 
- <img src = "Assest/red1.png" alt = "5mg"/>
+ <img src = "./Assest/red1.png" alt = "homepage"/>
 
 ## Available Scripts
 
