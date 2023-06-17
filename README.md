@@ -1,5 +1,7 @@
 Deployed link of the website: https://typing-world-abu1osama.vercel.app/
 
+ <img src = "Assest/red1.png" alt = "5mg"/>
+
 ## Available Scripts
 
 In the project directory, you can run:
