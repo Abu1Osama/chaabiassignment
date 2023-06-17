@@ -2,7 +2,13 @@
   /* border: 1px solid red; */
   /* margin-top: 100px; */
   /* padding: 10px 0; */
-  background-image: linear-gradient(-45deg, #6666ff, skyblue);
+  background-image: linear-gradient(
+    to right,
+    #1fa2ff 0%,
+    #12d8fa 51%,
+    #1fa2ff 100%
+  );
+  background-size: 200% auto;
 }
 .footer-top {
   display: grid;

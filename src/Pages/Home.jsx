@@ -14,7 +14,7 @@ function Home() {
 
     <div className="home-div">
       <h3>Improve your Typing Skill</h3>
-      <button onClick={handle} className="enroll">Start Typing Test Now</button>
+      <button onClick={handle} className="enroll begin">Start Typing Test Now</button>
     </div>
     </div>
   );

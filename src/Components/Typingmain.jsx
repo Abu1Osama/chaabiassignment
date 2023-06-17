@@ -9,13 +9,14 @@ function Typingmain() {
     "Books are indeed never failing friends of man. For a mature mind, reading is the greatest source of pleasure and solace to distressed minds. The study of good books ennobles us and broadens our outlook. Therefore, the habit of reading should be cultivated. A student should never confine himself to his schoolbooks only. He should not miss the pleasure locked in the classics, poetry, drama, history, philosophy etc. We can derive benefit from other’s experiences with the help of books. The various sufferings, endurance and joy described in books enable us to have a closer look at human life. They also inspire us to face the hardships of life courageously. Nowadays there are innumerable books and time is scarce. ",
     "I am always scolded by my parents. But one day I was severely scolded by my English teacher. She infect teaches well. But that day, I could not resist the temptation that an adventure of Nancy Drew offered. While she was teaching, I was completely engrossed in reading that book. Nancy Drew was caught in the trap laid by some smugglers and it was then when I felt a light tap on my bent head. The teacher had caught me red handed. She scolded me then and there and insulted me in front of the whole class. I was embarrassed. My cheeks burned being guilty conscious. When the class was over, I went to the teacher to apologize. When she saw that I had realized my mistake.",
     "A group of children would play in the garden belonging to a giant each day after school. One day, the giant returns home from a seven year visit to his friend, a Cornish ogre. Furious at finding the children trespassing, he chases them out and proceeds to build a wall around his garden.",
+   
   ];
   // let randomindex=Math.floor(Math.random()*(((data.length-1)+1)))
 
   const [randomindex, setRandomindex] = useState(
     Math.floor(Math.random() * (data.length - 1 + 1))
   );
-  
+
   let str = data[randomindex].split("");
   let rv = str.shift();
   let str2 = str;
@@ -29,31 +30,23 @@ function Typingmain() {
   const [starttest, setStarttest] = useState(true);
   const [mistake, setmistake] = useState(false);
 
-  const [wpm, setWpm] = useState( Math.round((wordcount / 5 )/ (timer / 60)));
+  const [wpm, setWpm] = useState(Math.round(wordcount / 5 / (timer / 60)));
   const [showresult, setShowresult] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-
-
-
-  const accuracy = ((wordcount) / (wordcount + wrongcount)) * 100;
-
-
+  const accuracy = (wordcount / (wordcount + wrongcount)) * 100;
 
   if (starttest == false && timer < 60) {
     setTimeout(() => {
-
       settimer(timer + 1);
-    setWpm(Math.round((wordcount / 5 )/ (timer / 60)))
-      
+      setWpm(Math.round(wordcount / 5 / (timer / 60)));
     }, 1000);
-
+    
   }
 
   useEffect(() => {
     if (timer === 60) {
-      // Reset all the necessary state variables here
       setRandomindex(Math.floor(Math.random() * (data.length - 1 + 1)));
       let str = data[randomindex].split("");
       let rv = str.shift();
@@ -62,7 +55,7 @@ function Typingmain() {
       setCustomtext("");
       setShowText(str.join(""));
       setCurrentposition(rv);
-     
+
       setStarttest(true);
       setmistake(false);
       setShowresult(false);
@@ -73,46 +66,46 @@ function Typingmain() {
   const handleChange = (e) => {
     let char = e.target.value;
 
+
     if (char[char.length - 1] == currentposition) {
       setWordcount(wordcount + 1);
 
       let arr = text;
       let removeChar = currentposition;
       let pos = arr.shift();
-      
+
       setCustomtext(customtext + removeChar);
       setText(arr);
       setShowText(text.join(""));
       setCurrentposition(pos);
       setmistake(false);
-      
+
+
+
     } else {
       setWrongcount(wrongcount + 1);
       setmistake(true);
-       e.target.value = customtext;
+      e.target.value = customtext;
     }
-    console.log(char, char[char.length - 1]);
+console.log(str.length,wordcount)
+// if(str.length==wordcount){
+//   setShowresult(true)
+//   // setStarttest(true)
+
+
+// }
+    // console.log(char, char[char.length - 1]);
   };
-  // useEffect(() => {
-  //   let arr = text;
-  //   let removeChar = arr.splice(0,1);
-  //   console.log(removeChar)
-  //   setText(arr);
-  //   setCurrentposition(removeChar);
-  //   console.log(currentposition)
-  //   setShowText(text.join(""));
-  // }, []);
+
   const handletype = () => {
     setStarttest(false);
-
   };
   const startagain = () => {
     setShowresult(false);
 
-     setWrongcount(0);
-      settimer(1);
-      setWordcount(0)
-    
+    setWrongcount(0);
+    settimer(1);
+    setWordcount(0);
   };
 
   return (
@@ -132,9 +125,7 @@ function Typingmain() {
             />
           </svg>
           <span>WPM</span>
-          <span className="sam">
-            {starttest ? "0" : wpm}
-          </span>
+          <span className="sam">{starttest ? "0" : wpm}</span>
         </a>
         <a className="btn_top btn_top2">
           <svg
@@ -170,32 +161,40 @@ function Typingmain() {
             />
           </svg>
           <span>Accuracy</span>
-          <span className="sam">{wordcount==0?"0":accuracy.toFixed(2)}%</span>
+          <span className="sam">
+            {wordcount == 0 ? "0" : accuracy.toFixed(2)}%
+          </span>
         </a>
-        {showresult?"":<a  onClick={handletype} className="btn_top btn_top3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 512 512"
-          >
-            <path
-              d="M142.9 142.9c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5c0 0 0 0 0 0H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5c7.7-21.8 20.2-42.3 37.8-59.8zM16 312v7.6 .7V440c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2l41.6-41.6c87.6 86.5 228.7 86.2 315.8-1c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.2 62.2-162.7 62.5-225.3 1L185 329c6.9-6.9 8.9-17.2 5.2-26.2s-12.5-14.8-22.2-14.8H48.4h-.7H40c-13.3 0-24 10.7-24 24z"
-              fill="#a13000"
-            />
-          </svg>
-          <span>Start</span>
-        </a>}
+        {showresult ? (
+          ""
+        ) : (
+          <a onClick={handletype} className={!starttest?"btn_top btn_top3":"btn_top btn_top3 flash"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M142.9 142.9c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5c0 0 0 0 0 0H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5c7.7-21.8 20.2-42.3 37.8-59.8zM16 312v7.6 .7V440c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2l41.6-41.6c87.6 86.5 228.7 86.2 315.8-1c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.2 62.2-162.7 62.5-225.3 1L185 329c6.9-6.9 8.9-17.2 5.2-26.2s-12.5-14.8-22.2-14.8H48.4h-.7H40c-13.3 0-24 10.7-24 24z"
+                fill="#a13000"
+              />
+            </svg>
+            <span>Start</span>
+          </a>
+        )}
       </div>
 
       {showresult ? (
         <div style={{ display: showresult }} className="show-result">
-        <div className="result-div">
-          <strong>Word Per Minute: {wpm}</strong>
-    
-          <strong>Accuracy: {wordcount==0?"0":accuracy.toFixed(2)}%</strong>
-        </div>
+          <div className="result-div">
+            <strong>Word Per Minute: {wpm}</strong>
+
+            <strong>
+              Accuracy: {wordcount == 0 ? "0" : accuracy.toFixed(2)}%
+            </strong>
+          </div>
           <button onClick={startagain}>Start Test Again</button>
         </div>
       ) : starttest ? (
