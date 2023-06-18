@@ -1,4 +1,4 @@
-<strong>Typing World - Improve Your Typing Skills</strong>
+<h1>Typing World - Improve Your Typing Skills</h1>
 
 Typing World is a web application designed to help users enhance their typing skills, speed, and accuracy. With interactive exercises and tests, users can practice typing and track their progress over time.
 
