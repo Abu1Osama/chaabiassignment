@@ -1,10 +1,13 @@
 Deployed link of the website: https://typing-world-abu1osama.vercel.app/
 
- <li>Homepage</li>
-![Homepage](src/Assest/red1.png)
- <li>Registration Page</li>
-![Homepage](src/Assest/Red3.png)
- <li>Typing Page</li>
-![Homepage](src/Assest/Red2.png)
- <li>Result Page</li>
- ![Homepage](src/Assest/typing5.png)
+- Homepage
+![Homepage](https://typing-world-abu1osama.vercel.app/src/Assest/red1.png)
+
+- Registration Page
+![Registration Page](https://typing-world-abu1osama.vercel.app/src/Assest/Red3.png)
+
+- Typing Page
+![Typing Page](https://typing-world-abu1osama.vercel.app/src/Assest/Red2.png)
+
+- Result Page
+![Result Page](https://typing-world-abu1osama.vercel.app/src/Assest/typing5.png)
