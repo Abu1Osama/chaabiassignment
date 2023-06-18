@@ -147,6 +147,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <li>Homepage</li>
           {isLoading ? (
             <div className="login-form-child">Logging in...</div>
           ) : (
