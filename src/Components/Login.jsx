@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import "../Styles/Login.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  login,
-  loginFailure,
-  loginRequest,
-  loginSuccess,
-} from "../Redux/AuthReducer/action";
-import axios from "axios";
+import { loginRequest, loginSuccess, loginFailure, loginUser } from "../Redux/AuthReducer/action";
 import { toast } from "react-hot-toast";
 
 function Login() {
@@ -19,104 +13,35 @@ function Login() {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
-  
+
     // Check if email and password are empty
-    if (email.trim() === "" || password.trim() === "") {
-      toast.error("Please enter email and password", {
+    if (email === "" || password === "") {
+      toast.error("Please enter email and password.",{
         style: {
           borderRadius: "50px",
-          background: "#989898",
-          color: "red",
+          color: "black",
           padding: "1rem 1.5rem",
           fontWeight: "600",
         },
       });
       return;
     }
-  
+
+    const body = {
+      email,
+      password,
+    };
+
     dispatch(loginRequest());
-  
-    axios
-      .get("https://semi-mock2.onrender.com/users")
-      .then((response) => {
-        const userData = response.data.find(
-          (user) => user.email === email && user.password === password
-        );
-        if (userData) {
-          dispatch(loginSuccess(userData.name));
-          navigate(location.state?.from || "/");
-          toast.success("Login successfully 😍 !", {
-            style: {
-              borderRadius: "50px",
-              background: "#989898",
-              color: "green",
-              padding: "1rem 1.5rem",
-              fontWeight: "600",
-            },
-          });
-        } else {
-          dispatch(loginFailure());
-          toast.error("Wrong credentials 👻 !", {
-            style: {
-              borderRadius: "50px",
-              background: "#989898",
-              color: "red",
-              padding: "1rem 1.5rem",
-              fontWeight: "600",
-            },
-          });
-        }
-      })
-      .catch((error) => {
-        dispatch(loginFailure());
-      });
+
+    dispatch(loginUser(body, navigate,location)); 
+
+    setEmail(""); 
+    setPassword("");
   };
-  
-
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   dispatch(loginRequest());
-
-  //   axios
-  //     .get("https://semi-mock2.onrender.com/users", {
-  //       params: {
-  //         email: email,
-  //         password: password,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       const userData = response.data[0];
-  //       if (userData) {
-  //         dispatch(loginSuccess(userData.name));
-  //         navigate(location.state?.from || "/");
-  //         toast.success("Login successfully 😍 !", {
-  //           style: {
-  //             borderRadius: "50px",
-  //             background: "#989898",
-  //             color:"green",
-  //             padding: "1rem 1.5rem",
-  //             fontWeight: "600",
-  //           },
-  //         });
-  //       } else {
-  //         dispatch(loginFailure());
-  //         toast.error("Wrong credential 👻 !", {
-  //           style: {
-  //             borderRadius: "50px",
-  //             background: "#989898",
-  //             color: "red",
-  //             padding: "1rem 1.5rem",
-  //             fontWeight: "600",
-  //           },
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       dispatch(loginFailure());
-  //     });
-  // };
 
   return (
     <div id="login">
@@ -131,7 +56,7 @@ function Login() {
               name="email"
               value={email}
               required={true}
-              placeholder="Enter your name"
+              placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -147,7 +72,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-         
+
           {isLoading ? (
             <div className="login-form-child">Logging in...</div>
           ) : (
@@ -155,9 +80,7 @@ function Login() {
               <input type="submit" value="Submit" onClick={handleLogin} />
             </div>
           )}
-          {isError && (
-            <div className="login-form-child">Invalid email or password</div>
-          )}
+       
         </form>
       </div>
     </div>

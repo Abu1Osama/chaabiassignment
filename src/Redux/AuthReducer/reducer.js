@@ -2,9 +2,10 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS } from "../
 
 const initialState = {
   isAuth: false,
-  email: "",
+  token: "",
   isLoading: false,
   isError: false,
+  name:""
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -14,9 +15,9 @@ export const reducer = (state = initialState, { type, payload }) => {
     case LOGIN_FAILURE:
       return { ...state, isLoading: false, isError: true };
     case LOGIN_SUCCESS:
-      return { ...state, isLoading: false, isAuth: true, email: payload };
+      return { ...state, isLoading: false, isAuth: true, token: payload,name: payload.name };
       case LOGOUT_SUCCESS:
-        return { ...state, isAuth: false, email: "" };
+        return { ...state, isAuth: false, token: "" };
     default:
       return state;
   }

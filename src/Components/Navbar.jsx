@@ -7,7 +7,9 @@ import {  logoutUser } from "../Redux/AuthReducer/action";
 
 function Navbar() {
   const isAuth = useSelector((state) => state.AuthReducer.isAuth);
-  const name = useSelector((state) => state.AuthReducer.email);
+  const name = useSelector((state) => state.AuthReducer.name);
+  console.log(name)
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
