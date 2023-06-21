@@ -15,28 +15,34 @@ Typing World is a functional and responsive web application designed to help use
 3. Run the app locally with `npm start`.
 4. Access the app in your browser at `http://localhost:3000`.
 
-Contributions and feedback are welcome! Feel free to create pull requests or submit issues if you encounter any bugs or have suggestions for improvements.
+<strong>Backend API:</strong>
+The backend API for user registration and login is hosted at [https://userauthentication-oqxf.onrender.com](https://userauthentication-oqxf.onrender.com). It provides endpoints for user authentication.
 
-Technologies used:<strong>React, HTML, CSS.</strong>
+<strong>Swagger Documentation:</strong>
+The Swagger documentation for the backend API can be found at [https://userauthentication-oqxf.onrender.com/docs/](https://userauthentication-oqxf.onrender.com/docs/). It provides detailed information about the available endpoints, request/response schemas, and API usage.
 
-<strong>Visit the deployed website:</strong> [https://typing-world-abu1osama.vercel.app/](https://typing-world-abu1osama.vercel.app/)
+<strong>Technologies Used:</strong>
+- React
+- HTML
+- CSS
 
-<strong>Start improving your typing skills today with Typing World!</strong>
+<strong>Deployed Website:</strong>
+Visit the deployed website: [https://typing-world-abu1osama.vercel.app/](https://typing-world-abu1osama.vercel.app/)
 
-
-
-- <strong>Homepage</strong>
-
+<strong>Screenshots:</strong>
+- Homepage
 ![Homepage](src/Assest/red1.png)
 
-- <strong>Registration Page</strong>
-
+- Registration Page
 ![Registration Page](src/Assest/Red3.png)
 
-- <strong>Typing Page</strong>
-
+- Typing Page
 ![Typing Page](src/Assest/Red2.png)
 
-- <strong>Result Page</strong>
-
+- Result Page
 ![Result Page](src/Assest/typing5.png)
+
+<strong>Contributing:</strong>
+Contributions and feedback are welcome! If you encounter any bugs or have suggestions for improvements, please feel free to create pull requests or submit issues.
+
+Start improving your typing skills today with Typing World!
